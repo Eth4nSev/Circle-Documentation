@@ -1,889 +1,1025 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Circle — Complete Feature Documentation">
-<title>Circle — Documentation</title>
-<style>
-:root {
-  --accent: #17b3da;
-  --bg: #050505;
-  --panel: #0d0d0f;
-  --panel-2: #111114;
-  --border: rgba(255,255,255,.09);
-  --text: #f5f5f7;
-  --muted: #9a9aa3;
-  --max: 1180px;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background:
-    radial-gradient(circle at 80% 0%, rgba(23,179,218,.12), transparent 28rem),
-    var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
-  line-height: 1.65;
-}
-a { color: inherit; text-decoration: none; }
-.layout {
-  width: min(var(--max), calc(100% - 40px));
-  margin: auto;
-  display: grid;
-  grid-template-columns: 245px minmax(0, 1fr);
-  gap: 60px;
-}
-header {
-  padding: 100px 0 70px;
-  border-bottom: 1px solid var(--border);
-}
-.hero {
-  width: min(var(--max), calc(100% - 40px));
-  margin: auto;
-}
-.eyebrow {
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  font-size: .78rem;
-}
-h1 {
-  margin: 8px 0 15px;
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: .95;
-  letter-spacing: -.065em;
-}
-.hero p {
-  max-width: 720px;
-  color: var(--muted);
-  font-size: 1.15rem;
-}
-.sidebar {
-  position: sticky;
-  top: 25px;
-  align-self: start;
-  height: calc(100vh - 50px);
-  overflow-y: auto;
-  padding: 25px 0;
-}
-.sidebar-title {
-  color: var(--muted);
-  font-size: .75rem;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  margin-bottom: 12px;
-}
-.sidebar a {
-  display: block;
-  color: #aaaab2;
-  padding: 5px 0;
-  font-size: .85rem;
-}
-.sidebar a:hover { color: var(--accent); }
-main { padding: 70px 0 120px; }
-.section {
-  position: relative;
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 25px;
-  padding: 0 0 70px;
-  margin-bottom: 70px;
-  border-bottom: 1px solid var(--border);
-  scroll-margin-top: 24px;
-}
-.section-number {
-  color: var(--accent);
-  font: 700 .8rem/1 monospace;
-  padding-top: 13px;
-}
-.section-body { min-width: 0; }
-h2 {
-  margin: 0 0 28px;
-  font-size: clamp(1.8rem, 4vw, 2.7rem);
-  line-height: 1.1;
-  letter-spacing: -.035em;
-}
-h3 {
-  margin: 32px 0 10px;
-  font-size: 1.15rem;
-}
-p { color: #c5c5cb; margin: 12px 0; }
-ul {
-  margin: 12px 0 20px;
-  padding-left: 24px;
-  color: #c5c5cb;
-}
-li { margin: 5px 0; }
-strong { color: var(--text); }
-blockquote {
-  margin: 20px 0;
-  padding: 15px 20px;
-  border-left: 3px solid var(--accent);
-  background: rgba(23,179,218,.06);
-  color: #e9e9ec;
-  border-radius: 0 10px 10px 0;
-}
-code {
-  padding: 2px 6px;
-  border-radius: 5px;
-  background: #18181c;
-  color: #d9f7ff;
-}
-pre {
-  padding: 20px;
-  overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #09090b;
-}
-footer {
-  width: min(var(--max), calc(100% - 40px));
-  margin: auto;
-  padding: 35px 0 60px;
-  color: #777780;
-  font-size: .85rem;
-}
-@media (max-width: 850px) {
-  .layout { display: block; }
-  .sidebar {
-    position: relative;
-    top: 0;
-    height: auto;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .sidebar a {
-    display: inline-block;
-    margin: 0 14px 6px 0;
-  }
-  main { padding-top: 45px; }
-}
-@media (max-width: 600px) {
-  .layout, .hero, footer { width: min(100% - 26px, var(--max)); }
-  header { padding: 65px 0 50px; }
-  .section { grid-template-columns: 1fr; gap: 8px; }
-  .section-number { padding-top: 0; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Circle documentation — learn how to use Circle's current features.">
+  <title>Circle Documentation</title>
+
+  <style>
+    :root {
+      --accent: #17b3da;
+      --background: #050505;
+      --surface: #0d0d0f;
+      --surface-hover: #131316;
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #f5f5f7;
+      --muted: #9999a3;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hero {
+      padding: 110px 24px 90px;
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(
+          circle at 75% 0%,
+          rgba(23, 179, 218, 0.16),
+          transparent 34rem
+        );
+    }
+
+    .hero-inner {
+      width: min(var(--max-width), 100%);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin-bottom: 16px;
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0 0 22px;
+      font-size: clamp(4rem, 11vw, 8rem);
+      font-weight: 700;
+      letter-spacing: -0.075em;
+      line-height: 0.9;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .layout {
+      width: min(var(--max-width), calc(100% - 48px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 70px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 24px;
+      align-self: start;
+      height: calc(100vh - 48px);
+      padding: 32px 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-label {
+      margin-bottom: 14px;
+      color: #66666e;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 6px 0;
+      color: #92929c;
+      font-size: 0.86rem;
+      transition: color 0.2s ease;
+    }
+
+    .sidebar a:hover {
+      color: var(--text);
+    }
+
+    main {
+      padding: 80px 0 110px;
+    }
+
+    .section {
+      padding-bottom: 70px;
+      margin-bottom: 70px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 30px;
+    }
+
+    .section:last-child {
+      border-bottom: 0;
+    }
+
+    .section-number {
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .section h2 {
+      margin: 0 0 20px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+    }
+
+    .section h3 {
+      margin: 32px 0 12px;
+      font-size: 1.05rem;
+    }
+
+    .section p {
+      max-width: 760px;
+      color: #c5c5cc;
+    }
+
+    .section ul {
+      max-width: 760px;
+      padding-left: 22px;
+      color: #c5c5cc;
+    }
+
+    .section li {
+      margin: 6px 0;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 19px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface);
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .card:hover {
+      background: var(--surface-hover);
+      border-color: rgba(23, 179, 218, 0.25);
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .card span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .steps {
+      display: grid;
+      gap: 9px;
+      max-width: 760px;
+      margin: 18px 0 26px;
+      counter-reset: step;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: var(--surface);
+      color: #d0d0d6;
+    }
+
+    .step::before {
+      content: counter(step);
+      counter-increment: step;
+
+      display: grid;
+      flex: 0 0 25px;
+      width: 25px;
+      height: 25px;
+      place-items: center;
+
+      border-radius: 50%;
+      background: rgba(23, 179, 218, 0.14);
+      color: var(--accent);
+
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .note {
+      max-width: 760px;
+      padding: 14px 17px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      background: rgba(23, 179, 218, 0.06);
+      color: #d0d0d6;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 9px;
+      margin: 3px 4px 3px 0;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      background: #0a0a0c;
+      color: #cfcfd5;
+
+      font-size: 0.78rem;
+    }
+
+    footer {
+      width: min(var(--max-width), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 30px 0 60px;
+      color: #66666e;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 820px) {
+      .layout {
+        display: block;
+      }
+
+      .sidebar {
+        position: relative;
+        top: auto;
+        height: auto;
+        padding: 25px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sidebar a {
+        display: inline-block;
+        margin-right: 15px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding: 70px 16px 60px;
+      }
+
+      .layout,
+      footer {
+        width: calc(100% - 30px);
+      }
+
+      main {
+        padding-top: 55px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <div class="hero">
-    <div class="eyebrow">Product Documentation</div>
-    <h1>Circle</h1>
-    <p>Reference-based documentation for Circle — a privacy-focused social platform built around intentional communities, user-controlled content, and small Circles.</p>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Current app documentation</div>
+
+      <h1>Circle</h1>
+
+      <p>
+        A practical guide to the features currently available in Circle.
+        This documentation follows the current Circle repository and does
+        not document future or unimplemented features.
+      </p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-label">Contents</div>
+
+      <a href="#overview">Overview</a>
+      <a href="#accounts">Accounts</a>
+      <a href="#home">Home</a>
+      <a href="#posts">Posts</a>
+      <a href="#profiles">Profiles</a>
+      <a href="#circles">Circles</a>
+      <a href="#circle-tools">Circle Tools</a>
+      <a href="#messaging">Messaging</a>
+      <a href="#search">Search</a>
+      <a href="#settings">Settings</a>
+      <a href="#privacy">Privacy & Data</a>
+      <a href="#quick-start">Quick Start</a>
+    </aside>
+
+    <main>
+      <section class="section" id="overview">
+        <div class="section-number">01 / OVERVIEW</div>
+
+        <h2>What is Circle?</h2>
+
+        <p>
+          Circle is a social app built around posts, profiles, smaller
+          private groups called Circles, and direct conversations.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <strong>Home Feed</strong>
+            <span>
+              Browse posts and filter your feed by the available options.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Posts</strong>
+            <span>
+              Create image posts, add captions, and control who can interact
+              with them.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Circles</strong>
+            <span>
+              Organize people into smaller groups and share content with
+              specific Circles.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Messaging</strong>
+            <span>
+              Send direct messages and use Circle Chat where available.
+            </span>
+          </div>
+        </div>
+
+        <div class="note">
+          This site documents the current Circle app rather than future
+          product ideas.
+        </div>
+      </section>
+
+      <section class="section" id="accounts">
+        <div class="section-number">02 / ACCOUNTS</div>
+
+        <h2>Accounts & Profiles</h2>
+
+        <p>
+          Circle uses authenticated accounts. After creating an account,
+          users complete their profile before entering the main app.
+        </p>
+
+        <h3>Get started</h3>
+
+        <div class="steps">
+          <div class="step">
+            Create an account or sign in to an existing account.
+          </div>
+
+          <div class="step">
+            Complete the required profile setup.
+          </div>
+
+          <div class="step">
+            Add your profile information and profile picture.
+          </div>
+
+          <div class="step">
+            Continue to the main Circle app.
+          </div>
+        </div>
+
+        <h3>Profile information</h3>
+
+        <p>
+          Profiles can display:
+        </p>
+
+        <div>
+          <span class="tag">Profile Picture</span>
+          <span class="tag">Display Name</span>
+          <span class="tag">Username</span>
+          <span class="tag">Bio</span>
+          <span class="tag">Posts</span>
+          <span class="tag">Followers</span>
+          <span class="tag">Following</span>
+        </div>
+      </section>
+
+      <section class="section" id="home">
+        <div class="section-number">03 / HOME</div>
+
+        <h2>Home Feed</h2>
+
+        <p>
+          Home is the main social feed. Posts are displayed directly in the
+          app and the feed can be filtered using the available feed controls.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <strong>All</strong>
+            <span>
+              View the normal Home feed.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Following</strong>
+            <span>
+              Focus the feed on accounts you follow.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Circles</strong>
+            <span>
+              Filter the feed to posts from selected Circles.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Refresh</strong>
+            <span>
+              Pull down to reload the current feed.
+            </span>
+          </div>
+        </div>
+
+        <h3>Filter the feed</h3>
+
+        <div class="steps">
+          <div class="step">
+            Open the Home tab.
+          </div>
+
+          <div class="step">
+            Tap the feed selector.
+          </div>
+
+          <div class="step">
+            Choose the feed or Circle filter you want.
+          </div>
+
+          <div class="step">
+            If using Circles, select the Circle you want to view.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="posts">
+        <div class="section-number">04 / POSTS</div>
+
+        <h2>Posts</h2>
+
+        <p>
+          Circle posts can contain an image and caption. When creating a
+          post, you can configure its audience and available interaction
+          options.
+        </p>
+
+        <h3>Create a post</h3>
+
+        <div class="steps">
+          <div class="step">
+            Open the post creation flow.
+          </div>
+
+          <div class="step">
+            Select an image from your device.
+          </div>
+
+          <div class="step">
+            Add a caption if you want one.
+          </div>
+
+          <div class="step">
+            Choose who the post should be shared with.
+          </div>
+
+          <div class="step">
+            Configure comments, sharing, and emoji reactions.
+          </div>
+
+          <div class="step">
+            Publish the post.
+          </div>
+        </div>
+
+        <h3>Post interactions</h3>
+
+        <div class="card-grid">
+          <div class="card">
+            <strong>Likes</strong>
+            <span>
+              Like posts and view the available like count.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Comments</strong>
+            <span>
+              Open a post's comments and participate when comments are
+              enabled.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Emoji Reactions</strong>
+            <span>
+              React with emojis when the post allows reactions.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Post Options</strong>
+            <span>
+              Access the available actions for a post.
+            </span>
+          </div>
+        </div>
+
+        <h3>Edit a post</h3>
+
+        <div class="steps">
+          <div class="step">
+            Open the options menu on your own post.
+          </div>
+
+          <div class="step">
+            Select Edit.
+          </div>
+
+          <div class="step">
+            Change the available post information.
+          </div>
+
+          <div class="step">
+            Save the changes.
+          </div>
+        </div>
+
+        <h3>Delete a post</h3>
+
+        <div class="steps">
+          <div class="step">
+            Open the options menu on your own post.
+          </div>
+
+          <div class="step">
+            Select Delete.
+          </div>
+
+          <div class="step">
+            Confirm the deletion.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="profiles">
+        <div class="section-number">05 / PROFILES</div>
+
+        <h2>Profiles</h2>
+
+        <p>
+          Profiles let you view another user's information, posts, and
+          follower relationships.
+        </p>
+
+        <h3>Open a profile</h3>
+
+        <div class="steps">
+          <div class="step">
+            Tap a username or profile picture from a post.
+          </div>
+
+          <div class="step">
+            Circle opens the corresponding profile.
+          </div>
+
+          <div class="step">
+            Browse the user's information and posts.
+          </div>
+        </div>
+
+        <h3>Follow a user</h3>
+
+        <div class="steps">
+          <div class="step">
+            Open the user's profile.
+          </div>
+
+          <div class="step">
+            Tap Follow.
+          </div>
+
+          <div class="step">
+            The relationship is saved to your account.
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <strong>Followers</strong>
+            <span>
+              View accounts following the profile.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Following</strong>
+            <span>
+              View accounts followed by the profile.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="circles">
+        <div class="section-number">06 / CIRCLES</div>
+
+        <h2>Circles</h2>
+
+        <p>
+          Circles are smaller groups of people that let you organize your
+          social experience and share posts with specific groups.
+        </p>
+
+        <h3>Create a Circle</h3>
+
+        <div class="steps">
+          <div class="step">
+            Open the Circles tab.
+          </div>
+
+          <div class="step">
+            Tap the create or plus button.
+          </div>
+
+          <div class="step">
+            Enter a Circle name.
+          </div>
+
+          <div class="step">
+            Choose the Circle's appearance.
+          </div>
+
+          <div class="step">
+            Add people to the Circle.
+          </div>
+
+          <div class="step">
+            Create the Circle.
+          </div>
+        </div>
+
+        <h3>Circle appearance</h3>
+
+        <p>
+          Circles can use different colors and supported icon styles to
+          distinguish them from one another.
+        </p>
+
+        <div>
+          <span class="tag">Photo</span>
+          <span class="tag">Emoji</span>
+          <span class="tag">Monogram</span>
+        </div>
+      </section>
+
+      <section class="section" id="circle-tools">
+        <div class="section-number">07 / CIRCLE TOOLS</div>
+
+        <h2>Circle Tools</h2>
+
+        <p>
+          Each Circle has its own screen with controls for managing and
+          interacting with the group.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <strong>Members</strong>
+            <span>
+              View the people who belong to the Circle.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Invites</strong>
+            <span>
+              Review available Circle invitations.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Settings</strong>
+            <span>
+              Access the Circle configuration available to you.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Mute</strong>
+            <span>
+              Temporarily mute activity from a Circle.
+            </span>
+          </div>
+        </div>
+
+        <h3>View Circle members</h3>
+
+        <div class="steps">
+          <div class="step">
+            Open the Circle.
+          </div>
+
+          <div class="step">
+            Open the Circle's menu.
+          </div>
+
+          <div class="step">
+            Select Members.
+          </div>
+        </div>
+
+        <h3>Circle invites</h3>
+
+        <div class="steps">
+          <div class="step">
+            Open the Circles area.
+          </div>
+
+          <div class="step">
+            Open the invites screen.
+          </div>
+
+          <div class="step">
+            Review your pending Circle invitations.
+          </div>
+
+          <div class="step">
+            Use the available action to respond to an invitation.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="messaging">
+        <div class="section-number">08 / MESSAGING</div>
+
+        <h2>Messaging</h2>
+
+        <p>
+          Circle supports direct conversations and Circle Chat.
+        </p>
+
+        <h3>Direct messages</h3>
+
+        <div class="steps">
+          <div class="step">
+            Open the messaging flow for another user.
+          </div>
+
+          <div class="step">
+            Open the conversation.
+          </div>
+
+          <div class="step">
+            Type your message.
+          </div>
+
+          <div class="step">
+            Tap send.
+          </div>
+        </div>
+
+        <h3>Circle Chat</h3>
+
+        <p>
+          Circle Chat provides a group conversation associated with a
+          Circle when the Circle has chat enabled.
+        </p>
+
+        <div class="note">
+          Direct messages and Circle Chat are separate from comments on
+          posts.
+        </div>
+      </section>
+
+      <section class="section" id="search">
+        <div class="section-number">09 / SEARCH</div>
+
+        <h2>Search</h2>
+
+        <p>
+          The Search tab allows you to find users and open their profiles.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            Open the Search tab.
+          </div>
+
+          <div class="step">
+            Enter a username or display name.
+          </div>
+
+          <div class="step">
+            Select a result.
+          </div>
+
+          <div class="step">
+            Circle opens that user's profile.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="settings">
+        <div class="section-number">10 / SETTINGS</div>
+
+        <h2>Settings</h2>
+
+        <p>
+          Circle's settings contain the account, privacy, appearance, and
+          Circle controls currently available in the app.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <strong>Account</strong>
+            <span>
+              Manage available account information.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Privacy & Security</strong>
+            <span>
+              Access available privacy and security controls.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Appearance</strong>
+            <span>
+              Manage available appearance preferences.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Circles</strong>
+            <span>
+              Manage available Circle preferences.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Sign Out</strong>
+            <span>
+              End your current authenticated session.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Version</strong>
+            <span>
+              View the installed Circle version.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="privacy">
+        <div class="section-number">11 / PRIVACY</div>
+
+        <h2>Privacy & Data</h2>
+
+        <p>
+          Circle uses Supabase for authentication, database data, storage,
+          and realtime functionality.
+        </p>
+
+        <div class="card-grid">
+          <div class="card">
+            <strong>Authentication</strong>
+            <span>
+              Handles authenticated user sessions.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Database</strong>
+            <span>
+              Stores profiles, posts, relationships, Circles, comments,
+              and messages.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Storage</strong>
+            <span>
+              Stores profile and post media.
+            </span>
+          </div>
+
+          <div class="card">
+            <strong>Realtime</strong>
+            <span>
+              Supports live messaging updates.
+            </span>
+          </div>
+        </div>
+
+        <div class="note">
+          Client-side UI checks are not a security boundary. Supabase
+          Row Level Security should enforce access to protected data.
+        </div>
+      </section>
+
+      <section class="section" id="quick-start">
+        <div class="section-number">12 / QUICK START</div>
+
+        <h2>Getting Started</h2>
+
+        <div class="steps">
+          <div class="step">
+            Create an account or sign in.
+          </div>
+
+          <div class="step">
+            Complete your profile.
+          </div>
+
+          <div class="step">
+            Open Home and explore the feed.
+          </div>
+
+          <div class="step">
+            Create a Circle and add people.
+          </div>
+
+          <div class="step">
+            Create your first post.
+          </div>
+
+          <div class="step">
+            Choose who can see and interact with the post.
+          </div>
+
+          <div class="step">
+            Use likes, comments, reactions, and messaging to interact.
+          </div>
+        </div>
+
+        <div class="note">
+          The Circle application repository is the source of truth for
+          current behavior. If the app changes, this documentation should
+          be updated to match it.
+        </div>
+      </section>
+    </main>
   </div>
-</header>
 
-<div class="layout">
-  <aside class="sidebar">
-    <div class="sidebar-title">Contents</div>
-    <a href="#section-0">Circle — Complete Feature List</a>
-    <a href="#section-1">1. Core Concept</a>
-    <a href="#section-2">2. Accounts &amp; Profiles</a>
-    <a href="#section-3">3. Posts</a>
-    <a href="#section-4">4. Post Viewing</a>
-    <a href="#section-5">5. Emoji Reactions</a>
-    <a href="#section-6">6. Comments</a>
-    <a href="#section-7">7. Post Sharing</a>
-    <a href="#section-8">8. Post Downloading</a>
-    <a href="#section-9">9. Post Reporting</a>
-    <a href="#section-10">10. Circles</a>
-    <a href="#section-11">11. Circle Member Limit</a>
-    <a href="#section-12">12. Creating a Circle</a>
-    <a href="#section-13">13. Inviting Circle Members</a>
-    <a href="#section-14">14. Circle Roles</a>
-    <a href="#section-15">15. Circle Screen</a>
-    <a href="#section-16">16. Circle Mute</a>
-    <a href="#section-17">17. Circle Menu</a>
-    <a href="#section-18">18. Circle Chat</a>
-    <a href="#section-19">19. Circle Backgrounds</a>
-    <a href="#section-20">20. Circle Personalization</a>
-    <a href="#section-21">21. Circles Tab</a>
-    <a href="#section-22">22. No Public Circles</a>
-    <a href="#section-23">23. Background + Glass Design</a>
-    <a href="#section-24">24. AI Post Moderation</a>
-    <a href="#section-25">25. AI Moderation System</a>
-    <a href="#section-26">26. Human Moderation</a>
-    <a href="#section-27">27. Privacy Architecture</a>
-    <a href="#section-28">28. Supabase Backend</a>
-    <a href="#section-29">29. Authentication</a>
-    <a href="#section-30">30. No Stories</a>
-    <a href="#section-31">31. No Reels/Shorts-Style Feed</a>
-    <a href="#section-32">32. No Ads</a>
-    <a href="#section-33">33. Subscriptions</a>
-    <a href="#section-34">34. Donations</a>
-    <a href="#section-35">35. Business Philosophy</a>
-    <a href="#section-36">36. Circle&#x27;s Overall Identity</a>
-    <a href="#section-37">37. Additional Features Confirmed From Circle Documentation</a>
-    <a href="#section-38">38. Product Philosophy</a>
-  </aside>
-  <main>
-    
-    <article class="section" id="section-0">
-      <div class="section-number">00</div>
-      <div class="section-body">
-        <h2>Circle — Complete Feature List</h2>
-        <p>Here is the consolidated feature set we&#x27;ve established throughout this conversation, including the latest changes and removing features you&#x27;ve decided against.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-1">
-      <div class="section-number">01</div>
-      <div class="section-body">
-        <h2>1. Core Concept</h2>
-        <p>Circle is a <strong>privacy-focused social media app</strong> designed around sharing with people you intentionally choose.</p>
-<p>Core principles:</p>
-<ul><li>Privacy-first</li><li>No ads</li><li>No stories</li><li>No Shorts/Reels-style entertainment feed</li><li>No algorithmic entertainment feed</li><li>Core social features remain free</li><li>Small, intentional communities</li></ul>
-<p>Circle is <strong>not being merged with LetsChat</strong>.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-2">
-      <div class="section-number">02</div>
-      <div class="section-body">
-        <h2>2. Accounts &amp; Profiles</h2>
-        <h3>Account privacy</h3>
-<p>Accounts can have different access levels:</p>
-<ul><li>Normal account</li><li>Private account where followers require approval</li><li>Invite-only account</li></ul>
-<h3>Invite-only accounts</h3>
-<p>When an account is invite-only:</p>
-<ul><li>It does not appear in search.</li><li>Other users cannot simply discover the account.</li><li>The user needs an invite link.</li><li>Following/access requires accepting the invitation.</li></ul>
-<h3>Profiles</h3>
-<p>Profiles include things such as:</p>
-<ul><li>Profile picture</li><li>Username</li><li>Display name</li><li>Bio</li><li>Profile background</li><li>Privacy settings</li></ul>
-<h3>Profile backgrounds</h3>
-<p>Users can customize the background of their profile screen.</p>
-<p>The background can eventually support things like:</p>
-<ul><li>Colors</li><li>Gradients</li><li>Images</li><li>Other customization options</li></ul>
-<p>The profile background is a <strong>personal UI preference</strong>, rather than something that changes the underlying account for everyone.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-3">
-      <div class="section-number">03</div>
-      <div class="section-body">
-        <h2>3. Posts</h2>
-        <p>Users can create posts containing:</p>
-<ul><li>Photos</li><li>Videos</li><li>Text</li><li>Captions</li><li>Edited media</li></ul>
-<p>When creating a post, users can choose:</p>
-<ul><li>Whether comments are enabled</li><li>Whether emoji reactions are enabled</li><li>Whether sharing is enabled</li></ul>
-<h3>Post editing</h3>
-<p>Circle will have editing tools including:</p>
-<ul><li>Basic editing</li><li>Filters</li><li>Effects</li><li>Premium filters/effects</li><li>Future AI editing tools</li></ul>
-<h3>Free premium-effect rotation</h3>
-<p>Free users can periodically access premium filters/effects.</p>
-<p>The current idea:</p>
-<blockquote>Every two weeks, a different premium filter/effect becomes available to Free users.</blockquote>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-4">
-      <div class="section-number">04</div>
-      <div class="section-body">
-        <h2>4. Post Viewing</h2>
-        <p>Posts use a <strong>GlassView-based UI</strong>.</p>
-<p>The general visual structure is:</p>
-<p><strong>Custom background → translucent GlassView → post</strong></p>
-<p>This allows the user&#x27;s Circle/profile background to visually show through the post interface.</p>
-<p>Post interactions include:</p>
-<ul><li>Like</li><li>Comment</li><li>Emoji reaction</li><li>Share</li><li>More options</li></ul>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-5">
-      <div class="section-number">05</div>
-      <div class="section-body">
-        <h2>5. Emoji Reactions</h2>
-        <p>Users can react to posts with emojis.</p>
-<p>When tapping the emoji reaction option:</p>
-<ul><li>The phone&#x27;s emoji keyboard opens.</li><li>The user selects an emoji.</li><li>The emoji becomes a reaction.</li></ul>
-<p>Instead of showing every reaction directly on the post, the post can show:</p>
-<blockquote>Most-used emoji + total reaction count</blockquote>
-<p>For example:</p>
-<blockquote>😂 47</blockquote>
-<p>Users can still open the reactions to see more information.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-6">
-      <div class="section-number">06</div>
-      <div class="section-body">
-        <h2>6. Comments</h2>
-        <p>Posts can have comments.</p>
-<p>When creating a post, the author can choose:</p>
-<blockquote>**Allow comments**</blockquote>
-<p>If disabled, other users cannot comment on that post.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-7">
-      <div class="section-number">07</div>
-      <div class="section-body">
-        <h2>7. Post Sharing</h2>
-        <p>Posts can have sharing enabled or disabled.</p>
-<p>When sharing is enabled, users can share a post with a Circle.</p>
-<h3>Privacy restrictions</h3>
-<p>A post cannot bypass its privacy settings.</p>
-<p>For example, if someone tries to share a post with somebody who:</p>
-<ul><li>Doesn&#x27;t follow the original poster</li><li>Isn&#x27;t in the appropriate Circle</li><li>Doesn&#x27;t have permission to view it</li></ul>
-<p>the share won&#x27;t work.</p>
-<h3>Circle sharing</h3>
-<p>A shared post can appear inside the Circle&#x27;s conversation/chat.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-8">
-      <div class="section-number">08</div>
-      <div class="section-body">
-        <h2>8. Post Downloading</h2>
-        <p>The <strong>Download Post</strong> option is only available to the original poster.</p>
-<p>Other users cannot download the post through Circle&#x27;s built-in download function.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-9">
-      <div class="section-number">09</div>
-      <div class="section-body">
-        <h2>9. Post Reporting</h2>
-        <p>Posts have a <strong>Report Post</strong> option inside the post&#x27;s three-dot menu.</p>
-<p>Users can report a post by selecting:</p>
-<ul><li>Reason for reporting</li><li>Optional report message</li></ul>
-<p>The report contains the reported post and the report information.</p>
-<p>The moderation system is designed so that the reported user doesn&#x27;t see who reported them.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-10">
-      <div class="section-number">10</div>
-      <div class="section-body">
-        <h2>10. Circles</h2>
-        <p>Circles are the central feature of the app.</p>
-<p>They allow users to organize people into intentional groups.</p>
-<p>Examples:</p>
-<ul><li>Family</li><li>Closest Friends</li><li>School</li><li>Gaming</li><li>Sports</li><li>Projects</li><li>Trips</li></ul>
-<p>You can create an <strong>unlimited number of Circles</strong>.</p>
-<h3>Important change</h3>
-<p><strong>Public Circles have been removed.</strong></p>
-<p>Circles are no longer intended to become thousands-member public communities.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-11">
-      <div class="section-number">11</div>
-      <div class="section-body">
-        <h2>11. Circle Member Limit</h2>
-        <p>Each Circle has a maximum of:</p>
-<blockquote>**50 members**</blockquote>
-<p>This reinforces the idea that Circles are small, intentional communities.</p>
-<p>A full Circle cannot accept additional members until someone leaves or is removed.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-12">
-      <div class="section-number">12</div>
-      <div class="section-body">
-        <h2>12. Creating a Circle</h2>
-        <p>When creating a Circle, the user chooses:</p>
-<ul><li>Circle name</li><li>Circle color</li><li>Circle icon</li><li>People to invite</li><li>Whether Circle Chat is enabled</li></ul>
-<h3>Circle icons</h3>
-<p>A Circle icon can be created using:</p>
-<ul><li>Photo</li><li>Emoji</li><li>Monogram</li></ul>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-13">
-      <div class="section-number">13</div>
-      <div class="section-body">
-        <h2>13. Inviting Circle Members</h2>
-        <p>The original invitation system is now the only Circle membership system.</p>
-<p>Users can invite people through:</p>
-<ul><li>Mutual friends</li><li>Direct invitations</li><li>Invite links</li></ul>
-<p>There is no public Circle discovery system.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-14">
-      <div class="section-number">14</div>
-      <div class="section-body">
-        <h2>14. Circle Roles</h2>
-        <p>There are three Circle roles:</p>
-<h3>Admin</h3>
-<p>The highest-level Circle role.</p>
-<p>Can:</p>
-<ul><li>Edit Circle</li><li>Manage members</li><li>Manage Circle settings</li><li>Manage permissions</li><li>Manage invitations</li><li>Promote/demote Managers</li><li>Enable/disable Circle Chat</li><li>Configure advanced circle controls</li></ul>
-<h3>Manager</h3>
-<p>Can do essentially everything an Admin can do <strong>except enable/disable Circle Chat</strong>.</p>
-<h3>Member</h3>
-<p>Normal Circle participant.</p>
-<p>Can:</p>
-<ul><li>View Circle posts</li><li>Create posts</li><li>Comment</li><li>React</li><li>Participate in chat</li><li>Customize their personal Circle experience</li><li>Mute/block Circle Chat</li><li>Take part in Circle activity</li></ul>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-15">
-      <div class="section-number">15</div>
-      <div class="section-body">
-        <h2>15. Circle Screen</h2>
-        <p>When inside a Circle, the header contains:</p>
-<h3>Left</h3>
-<ul><li>Circle icon</li><li>Circle name</li></ul>
-<h3>Right</h3>
-<ul><li>Conversation/chat button</li><li>Mute button</li><li>Three-dot menu</li></ul>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-16">
-      <div class="section-number">16</div>
-      <div class="section-body">
-        <h2>16. Circle Mute</h2>
-        <p>The mute button opens a context menu with:</p>
-<ul><li>1 hour</li><li>24 hours</li><li>1 week</li><li>Until I unmute</li></ul>
-<p>Muting affects the individual user rather than everyone in the Circle.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-17">
-      <div class="section-number">17</div>
-      <div class="section-body">
-        <h2>17. Circle Menu</h2>
-        <p>The three-dot menu includes:</p>
-<ul><li>**Edit Circle**</li><li>**Members**</li><li>**Circle Settings**</li></ul>
-<p>The available editing options can depend on the user&#x27;s Circle role.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-18">
-      <div class="section-number">18</div>
-      <div class="section-body">
-        <h2>18. Circle Chat</h2>
-        <p>A Circle can optionally have its own chat.</p>
-<p>When creating a Circle, the user can choose whether to enable chat.</p>
-<p>Chat can later be enabled/disabled through Circle settings by the appropriate administrator.</p>
-<h3>Chat content</h3>
-<p>Users can send:</p>
-<ul><li>Text</li><li>Images</li><li>Emoji reactions</li></ul>
-<p>The chat is intentionally simple and isn&#x27;t heavily customizable.</p>
-<h3>Chat appearance</h3>
-<p>The chat uses the Circle&#x27;s chosen accent/color.</p>
-<h3>Individual chat blocking</h3>
-<p>Every member can independently <strong>block the Circle Chat</strong> for themselves.</p>
-<p>This doesn&#x27;t disable chat for everyone else.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-19">
-      <div class="section-number">19</div>
-      <div class="section-body">
-        <h2>19. Circle Backgrounds</h2>
-        <p>Users can customize the background of a Circle&#x27;s screen.</p>
-<p>The background is <strong>personal to the user</strong>.</p>
-<p>Changing your Circle background doesn&#x27;t change the background for other members.</p>
-<p>This is particularly useful because Circle&#x27;s posts will use <code>&lt;GlassView&gt;</code> components, allowing the background to remain visible behind/translucent through the post UI.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-20">
-      <div class="section-number">20</div>
-      <div class="section-body">
-        <h2>20. Circle Personalization</h2>
-        <p>Each user can customize parts of how a Circle appears <strong>on their own device</strong>.</p>
-<p>Potential personal settings include:</p>
-<ul><li>Circle background</li><li>Circle color preferences</li><li>View preferences</li><li>Mute status</li><li>Chat blocking</li><li>Pin status</li><li>Circle ordering</li></ul>
-<p>Shared Circle information remains controlled by the Circle itself.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-21">
-      <div class="section-number">21</div>
-      <div class="section-body">
-        <h2>21. Circles Tab</h2>
-        <p>The Circles tab displays all the Circles the user belongs to.</p>
-<p>Users can switch between:</p>
-<h3>Grid View</h3>
-<p>Circles appear as circular bubbles containing:</p>
-<ul><li>Circle icon</li><li>Circle color</li><li>Circle name</li></ul>
-<h3>List View</h3>
-<p>Circles appear in a traditional vertical list.</p>
-<p>Users can also:</p>
-<ul><li>Pin Circles</li><li>Rearrange Circles</li><li>Change between Grid and List views</li></ul>
-<p>These organizational choices are personal to each user.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-22">
-      <div class="section-number">22</div>
-      <div class="section-body">
-        <h2>22. No Public Circles</h2>
-        <p>The Public Circles idea was explicitly removed.</p>
-<p>There will <strong>not</strong> be:</p>
-<ul><li>Public town Circles</li><li>Public city Circles</li><li>Public county Circles</li><li>Public interest Circles</li><li>Thousands-member public communities</li><li>Public Circle discovery</li></ul>
-<p>This keeps Circles focused on actual relationships and intentionally selected groups.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-23">
-      <div class="section-number">23</div>
-      <div class="section-body">
-        <h2>23. Background + Glass Design</h2>
-        <p>The visual system is built around customizable backgrounds and translucent UI.</p>
-<p>The basic idea:</p>
-<pre><code>Custom Background
-↓
-GlassView
-↓
-Post
-↓
-Interactions</code></pre>
-<p>This allows users to personalize Circle without needing to customize every individual post.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-24">
-      <div class="section-number">24</div>
-      <div class="section-body">
-        <h2>24. AI Post Moderation</h2>
-        <p>A future AI moderation system can automatically check posts.</p>
-<p>Proposed flow:</p>
-<pre><code>User presses Post
-↓
-Temporary upload
-↓
-AI moderation
-↓
-Approved?
-↙         ↘
-Yes         No
-↓            ↓
-Publish     Return to editor</code></pre>
-<h3>If approved</h3>
-<p>The post continues through the normal publishing process.</p>
-<h3>If rejected</h3>
-<p>The user is returned to the post editing screen and receives a message explaining that the post wasn&#x27;t approved because it violates Circle&#x27;s Terms/Community Guidelines.</p>
-<p>The AI should eventually be able to detect things such as:</p>
-<ul><li>Spam</li><li>Harassment</li><li>Hate content</li><li>Threats</li><li>Explicit content</li><li>Other prohibited content</li></ul>
-<p>Borderline cases can be sent to human moderation instead of automatically rejecting them.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-25">
-      <div class="section-number">25</div>
-      <div class="section-body">
-        <h2>25. AI Moderation System</h2>
-        <p>A future AI moderator can also help with user reports.</p>
-<p>Potential functions:</p>
-<ul><li>Analyze reported content</li><li>Assign categories</li><li>Prioritize reports</li><li>Generate moderation summaries</li><li>Detect obvious violations</li><li>Help human moderators make decisions</li></ul>
-<p>The AI should <strong>assist human moderation rather than automatically making severe decisions</strong>, especially permanent bans.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-26">
-      <div class="section-number">26</div>
-      <div class="section-body">
-        <h2>26. Human Moderation</h2>
-        <p>Circle will have a reporting/moderation system.</p>
-<p>Reports contain:</p>
-<ul><li>Report reason</li><li>Report message</li><li>Reported post</li></ul>
-<p>The reporter&#x27;s identity isn&#x27;t shown to the reported user.</p>
-<h3>Moderation dashboard</h3>
-<p>You can have an internal Circle moderation website/dashboard.</p>
-<p>Potential actions:</p>
-<ul><li>Ignore</li><li>Remove post</li><li>Warning</li><li>Suspend for 1 week</li><li>Suspend for 1 month</li><li>Permanent ban eventually</li></ul>
-<h3>Suspension</h3>
-<p>When a user is suspended:</p>
-<ul><li>They cannot post during the suspension.</li><li>The original poster receives an email explaining the reason and suspension length.</li><li>The reporter receives a thank-you/confirmation email.</li></ul>
-<p>The reporter should <strong>not necessarily be told exactly what punishment was issued</strong>, preserving privacy around moderation decisions.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-27">
-      <div class="section-number">27</div>
-      <div class="section-body">
-        <h2>27. Privacy Architecture</h2>
-        <p>A major design principle is:</p>
-<blockquote>**Store as much as reasonably possible on-device.**</blockquote>
-<p>The app should use a local-first approach.</p>
-<h3>Local data</h3>
-<p>Potentially stored on-device:</p>
-<ul><li>Draft posts</li><li>Post editor state</li><li>Cached feed data</li><li>Recently viewed content</li><li>Circle ordering</li><li>Pinned Circles</li><li>Grid/List preference</li><li>Circle backgrounds</li></ul>
-<h3>Supabase</h3>
-<p>Supabase stores information that needs to be shared or synchronized between users, such as:</p>
-<ul><li>Accounts</li><li>Profiles</li><li>Followers</li><li>Circle memberships</li><li>Posts</li><li>Comments</li><li>Likes</li><li>Emoji reactions</li><li>Circle information</li><li>Circle roles</li></ul>
-<p>The principle is:</p>
-<blockquote>**Your device stores your personal experience; Supabase stores the shared social world.**</blockquote>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-28">
-      <div class="section-number">28</div>
-      <div class="section-body">
-        <h2>28. Supabase Backend</h2>
-        <p>Circle is being built using <strong>Supabase</strong>.</p>
-<p>Potential Supabase services:</p>
-<ul><li>PostgreSQL database</li><li>Supabase Auth</li><li>Supabase Storage</li><li>Row Level Security</li><li>Edge Functions</li><li>Realtime features for chat/notifications</li></ul>
-<h3>Security</h3>
-<p>Supabase Row Level Security should enforce things such as:</p>
-<ul><li>Users can only modify their own data.</li><li>Users can&#x27;t access private posts they aren&#x27;t authorized to view.</li><li>Only Circle members can access Circle content.</li><li>Only admins can manage sensitive Circle controls.</li></ul>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-29">
-      <div class="section-number">29</div>
-      <div class="section-body">
-        <h2>29. Authentication</h2>
-        <p>Supabase Auth handles accounts and authentication.</p>
-<p>The app shouldn&#x27;t store passwords in its own user table.</p>
-<p>Potential login methods include the authentication options you&#x27;ve previously been considering, including Apple/email-based authentication.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-30">
-      <div class="section-number">30</div>
-      <div class="section-body">
-        <h2>30. No Stories</h2>
-        <p>Circle explicitly <strong>does not have Stories</strong>.</p>
-<p>This is intentional.</p>
-<p>The app focuses on persistent posts rather than temporary content designed to encourage frequent checking.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-31">
-      <div class="section-number">31</div>
-      <div class="section-body">
-        <h2>31. No Reels/Shorts-Style Feed</h2>
-        <p>Circle will <strong>not</strong> have an infinite vertical video feed.</p>
-<p>Videos are simply another type of post.</p>
-<p>There will not be:</p>
-<ul><li>Reels-style interface</li><li>Shorts-style interface</li><li>Swipe-to-next-video entertainment loop</li><li>&quot;For You&quot; entertainment feed</li></ul>
-<p>The philosophy is:</p>
-<blockquote>**Circle is for sharing with people you care about, not maximizing screen time.**</blockquote>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-32">
-      <div class="section-number">32</div>
-      <div class="section-body">
-        <h2>32. No Ads</h2>
-        <p>Circle has a <strong>no-ad policy</strong>.</p>
-<p>The business model is instead based on:</p>
-<ul><li>Subscriptions</li><li>Optional donations</li></ul>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-33">
-      <div class="section-number">33</div>
-      <div class="section-body">
-        <h2>33. Subscriptions</h2>
-        <p>There are now three plans.</p>
-<h3>Circle Free</h3>
-<p><strong>$0</strong></p>
-<p>Core Circle experience.</p>
-<p>Includes things such as:</p>
-<ul><li>Posts</li><li>Circles</li><li>Circle Chat</li><li>Comments</li><li>Emoji reactions</li><li>Basic editing</li><li>Privacy features</li><li>Core social functionality</li></ul>
-<p>No ads.</p>
-<p>---</p>
-<h3>Circle+</h3>
-<p><strong>$3.99/month</strong></p>
-<p>Premium non-AI features.</p>
-<p>Potentially includes:</p>
-<ul><li>Full premium filter/effect library</li><li>Advanced non-AI editing tools</li><li>Additional customization</li><li>Other premium features that don&#x27;t have significant per-use infrastructure cost</li></ul>
-<p>No AI editing.</p>
-<p>---</p>
-<h3>Circle Max</h3>
-<p><strong>$9.99/month</strong></p>
-<p>Everything in Circle+ plus AI features.</p>
-<p>The exact AI feature list is currently <strong>TBD</strong>.</p>
-<p>Potential future features include:</p>
-<ul><li>AI image editing</li><li>AI background removal</li><li>AI object removal</li><li>AI enhancement</li><li>AI transformations</li><li>Other AI-powered creative tools</li></ul>
-<p>Because AI costs money per use, Circle Max may need an AI usage allowance rather than unlimited generations.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-34">
-      <div class="section-number">34</div>
-      <div class="section-body">
-        <h2>34. Donations</h2>
-        <p>There will be a <strong>Donate/Support Circle</strong> option in Settings.</p>
-<p>Users can:</p>
-<ul><li>Enter a custom donation amount.</li><li>Add an optional message.</li><li>Submit the donation.</li></ul>
-<p>The purpose is to allow people to financially support Circle without requiring a subscription.</p>
-<p>Donations are separate from Circle+ and Circle Max.</p>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-35">
-      <div class="section-number">35</div>
-      <div class="section-body">
-        <h2>35. Business Philosophy</h2>
-        <p>Circle&#x27;s monetization is intentionally focused on <strong>optional features rather than access to the social network itself</strong>.</p>
-<p>The fundamental experience isn&#x27;t supposed to be:</p>
-<blockquote>&quot;Pay us to use Circle.&quot;</blockquote>
-<p>It&#x27;s:</p>
-<blockquote>&quot;Circle is free; pay if you want premium creative tools or want to support the project.&quot;</blockquote>
-<p>---</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-36">
-      <div class="section-number">36</div>
-      <div class="section-body">
-        <h2>36. Circle&#x27;s Overall Identity</h2>
-        <p>The features collectively point toward a very specific product:</p>
-<h3>Circle is:</h3>
-<ul><li>Private</li><li>Relationship-focused</li><li>Ad-free</li><li>Small-community oriented</li><li>Customizable</li><li>Privacy-conscious</li><li>Moderated</li><li>Local-first where possible</li></ul>
-<h3>Circle is not:</h3>
-<ul><li>A TikTok clone</li><li>An Instagram Stories clone</li><li>A public forum</li><li>A giant community platform</li><li>An entertainment feed</li><li>An ad-driven social network</li></ul>
-<p>The strongest core loop is essentially:</p>
-<p><strong>People you know → Circles → Posts → Conversations → Reactions → Sharing</strong></p>
-<p>That is the current version of Circle based on everything we&#x27;ve established in this chat.</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-37">
-      <div class="section-number">37</div>
-      <div class="section-body">
-        <h2>37. Additional Features Confirmed From Circle Documentation</h2>
-        <p>The following features were present in the Circle product document but were missing or not fully represented in the consolidated feature list above.</p>
-
-        <h2>Features Only Present in the App Repository</h2>
-        <ul>
-          <li><strong>Biometric private dashboard security:</strong> Face ID / local authentication is configured for a private dashboard flow and a privacy/security settings area.</li>
-          <li><strong>Direct Messages:</strong> The app includes a dedicated DM interface and message flow separate from Circle chat.</li>
-          <li><strong>Account settings center:</strong> The app contains concrete Account, Privacy &amp; Security, Appearance, and Circles settings screens.</li>
-          <li><strong>Follower/following social graph:</strong> Relationship flows, mutual-friend discovery, and profile interaction logic are implemented in the app.</li>
-          <li><strong>Profile onboarding gate:</strong> The app redirects users through profile setup and verifies session/profile completeness before allowing access.</li>
-          <li><strong>Service outage handling:</strong> There is an explicit outage state for backend/service restrictions and graceful degradation for downtime.</li>
-          <li><strong>Public-vs-Circle posting:</strong> Posting includes a Public option and a Circle-specific audience selector, with privacy-aware sharing behavior.</li>
-        </ul>
-
-<h2>Design &amp; Platform</h2>
-<ul><li>Circle supports Dark Mode.</li><li>The primary visual theme is black and white.</li><li>The application accent color is `#17b3da`.</li><li>The interface should remain minimal, simple, and calm.</li></ul>
-<h2>Circle Creation</h2>
-<p>When creating a Circle, the user can configure:</p>
-<ul><li>Circle name</li><li>Circle color</li><li>Circle icon</li><li>Whether Circle Chat is enabled</li></ul>
-<p>Circle icons can use:</p>
-<ul><li>A photo</li><li>An emoji</li><li>A monogram</li></ul>
-<p>Members can be added by:</p>
-<ul><li>Selecting mutual friends</li><li>Creating an invite link</li></ul>
-<h2>Circle Personal Customization</h2>
-<p>Each member can independently customize how a Circle appears on their own device, including the Circle&#x27;s:</p>
-<ul><li>Name</li><li>Photo/icon</li><li>Color</li></ul>
-<p>These personal customizations do not change the Circle&#x27;s appearance for other members.</p>
-<h2>Profile Privacy</h2>
-<p>The documented profile privacy model includes:</p>
-<ul><li>Public</li><li>Private</li><li>Requires approval for followers</li><li>Hidden</li></ul>
-<p>Hidden profiles:</p>
-<ul><li>Are hidden from search.</li><li>Can be accessed through an invitation mechanism.</li><li>Can require invite-link-based approval.</li></ul>
-<p>Profiles intentionally avoid follower counts and other popularity metrics.</p>
-<h2>Posts</h2>
-<p>Posts can contain:</p>
-<ul><li>Images</li><li>Videos</li><li>Text</li><li>Captions</li></ul>
-<p>When creating a post, the author can choose who can see it:</p>
-<ul><li>Publicly</li><li>One or more Circles</li></ul>
-<p>The author can also configure:</p>
-<ul><li>Comments</li><li>Emoji reactions</li><li>Public like count</li><li>Sharing</li></ul>
-<h2>Post Sharing</h2>
-<p>The documented sharing options include:</p>
-<ul><li>Sharing with Circles when the post is public</li><li>Copying a post link</li></ul>
-<p>Sharing must continue to respect the original post&#x27;s privacy permissions.</p>
-<h2>Feed</h2>
-<p>The home feed is chronological rather than algorithmically ranked.</p>
-<p>It contains new posts from:</p>
-<ul><li>The user&#x27;s Circles</li><li>People the user follows</li></ul>
-<p>There is no engagement-based ranking system.</p>
-<h2>Privacy &amp; Data Collection</h2>
-<p>Circle&#x27;s privacy architecture includes these explicit principles:</p>
-<ul><li>No advertisements</li><li>Minimal data collection</li><li>No selling user information</li><li>Clear privacy settings</li><li>User-controlled information</li><li>Transparent privacy policies</li></ul>
-<p>The app should store more data on the user&#x27;s device whenever reasonably possible to reduce centralized storage and give users greater control.</p>
-<h2>Transport &amp; Credential Security</h2>
-<p>Communication between Circle and Supabase uses encrypted HTTPS/TLS connections.</p>
-<p>Passwords must:</p>
-<ul><li>Be handled by the authentication system</li><li>Be securely hashed</li><li>Never be stored in plain text</li></ul>
-<p>Circle should not maintain a separate plaintext password field in its own user tables.</p>
-<h2>Database Architecture</h2>
-<p>The shared backend may store information required to operate Circle, including:</p>
-<ul><li>User accounts</li><li>Profile information</li><li>Friendships/follow relationships</li><li>Circle memberships</li><li>Circle information</li><li>Encrypted post metadata</li></ul>
-<p>Personal content should be minimized on centralized infrastructure where practical.</p>
-<p>The database architecture should be designed to scale while maintaining:</p>
-<ul><li>Fast response times</li><li>Strong security</li><li>High reliability</li></ul>
-<h2>Media Editing Monetization</h2>
-<p>The original free/premium editing model is also explicitly documented:</p>
-<h3>Circle Free Editing</h3>
-<p>Free users receive:</p>
-<ul><li>Basic editing</li><li>Crop</li><li>Rotate</li><li>Brightness</li><li>Contrast</li><li>Saturation</li><li>8–12 filters/effects</li><li>1 featured Circle+ filter</li><li>1 featured Circle+ effect</li></ul>
-<p>The featured Circle+ filter and effect rotate every two weeks.</p>
-<h3>Circle+</h3>
-<p>Circle+ costs $3.99/month and may include:</p>
-<ul><li>All filters</li><li>All effects</li><li>New filters immediately when released</li></ul>
-<h3>Circle Max</h3>
-<p>Circle Max costs $9.99/month and includes:</p>
-<ul><li>Everything in Circle+</li><li>AI editing tools</li></ul>
-<p>The exact AI editing feature set remains subject to the current Circle Max plan definition.</p>
-<h2>Free Experience Principle</h2>
-<p>The free version should remain a complete social networking experience.</p>
-<p>Premium subscriptions should add optional creative/customization capabilities rather than paywalling Circle&#x27;s core social features.</p>
-<h2>Donations</h2>
-<p>The Settings area includes a donation option where a user can:</p>
-<ul><li>Choose a custom donation amount</li><li>Add a message</li><li>Contribute directly to Circle&#x27;s development</li></ul>
-<p>Donations are separate from the subscription plans.</p>
-      </div>
-    </article>
-    
-    <article class="section" id="section-38">
-      <div class="section-number">38</div>
-      <div class="section-body">
-        <h2>38. Product Philosophy</h2>
-        <p>Circle&#x27;s documented product goal is to combine:</p>
-<ul><li>The communication of messaging apps</li><li>The community features of social networks</li><li>The privacy approach of modern technology platforms</li></ul>
-<p>The intended experience is personal, clean, and controlled by the user.</p>
-<p>The name &quot;Circle&quot; represents:</p>
-<ul><li>Connection</li><li>Community</li><li>Trust</li><li>People coming together</li></ul>
-      </div>
-    </article>
-    
-  </main>
-</div>
-
-<footer>
-  Circle — Complete Feature Documentation
-</footer>
+  <footer>
+    Circle Documentation · Built around the current Circle app
+  </footer>
 </body>
 </html>
